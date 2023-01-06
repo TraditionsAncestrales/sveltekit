@@ -1,7 +1,7 @@
 <svelte:window bind:scrollY />
 <div class="group theme-{theme}" data-scrolled={isScrolled}>
   <TheHeader menu={menuWithActiveItems} class="z-30 fixed top-0 left-0 w-full" />
-  <TheHero {...hero} class={isKnowledge ? 'h-screen' : 'h-[640px]'} />
+  <TheHero class={cHeroH} {...hero} />
   <slot />
   <KnowledgeItems items={others} />
   <NewsletterSection border="top" intent="primary" />
@@ -33,4 +33,7 @@
   $: isHome = isKnowledge && theme === 'general';
   $: isScrolled = scrollY > 0;
   $: menuWithActiveItems = {...menu, items: menu.items.map((item) => ({...item, isActive: $page.url.pathname.startsWith(item.to)}))};
+
+  // STYLES ================================================================================================================================
+  $: cHeroH = isKnowledge ? 'h-screen' : 'h-[640px]';
 </script>
