@@ -11,9 +11,6 @@ importers:
       '@11ty/eleventy-fetch':
         specifier: ^4.0.1
         version: 4.0.1
-      '@changesets/cli':
-        specifier: ^2.27.9
-        version: 2.27.9
       '@fontsource-variable/raleway':
         specifier: ^5.1.0
         version: 5.1.0
@@ -26,15 +23,6 @@ importers:
       '@splidejs/splide':
         specifier: ^4.1.4
         version: 4.1.4
-      '@types/leaflet':
-        specifier: ^1.9.12
-        version: 1.9.12
-      '@types/mailchimp__mailchimp_marketing':
-        specifier: ^3.0.20
-        version: 3.0.20
-      '@types/md5':
-        specifier: ^2.3.5
-        version: 2.3.5
       '@unpic/svelte':
         specifier: ^0.0.53
         version: 0.0.53(svelte@5.0.0-next.259)
@@ -93,6 +81,9 @@ importers:
         specifier: ^0.2.4
         version: 0.2.4(pocketbase@0.21.5)(zod@3.23.8)
     devDependencies:
+      '@changesets/cli':
+        specifier: ^2.27.9
+        version: 2.27.9
       '@iconify/json':
         specifier: ^2.2.258
         version: 2.2.258
@@ -117,6 +108,15 @@ importers:
       '@types/eslint':
         specifier: ^9.6.1
         version: 9.6.1
+      '@types/leaflet':
+        specifier: ^1.9.12
+        version: 1.9.12
+      '@types/mailchimp__mailchimp_marketing':
+        specifier: ^3.0.20
+        version: 3.0.20
+      '@types/md5':
+        specifier: ^2.3.5
+        version: 2.3.5
       '@types/node':
         specifier: ^22.7.5
         version: 22.7.5
