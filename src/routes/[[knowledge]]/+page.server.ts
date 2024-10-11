@@ -1,7 +1,7 @@
+import { dev } from "$app/environment";
 import { MAILCHIMP_API_KEY, MAILCHIMP_LIST_ID, MAILCHIMP_SERVER, RESEND_API_KEY } from "$env/static/private";
-import { getKnowledgeEntries, getKnowledgePage } from "@/lib/pocketbase/api";
-import { getPb } from "@/lib/pocketbase/server";
-import { imageFrom, itemFromEvent, itemFromPost, itemFromService, pathFromKnowledge } from "@/lib/pocketbase/utils";
+import { getKnowledgePage, getKnowledgePageEntries } from "@/lib/api";
+import { getPocketbase } from "@/lib/pocketbase/server";
 import mailchimp from "@mailchimp/mailchimp_marketing";
 import md5 from "md5";
 import { Resend } from "resend";
@@ -15,23 +15,13 @@ const resend = new Resend(RESEND_API_KEY);
 
 // ENTRIES *********************************************************************************************************************************
 export const entries: EntryGenerator = async () => {
-  const locals = getPb(fetch);
-  const { knowledges } = await getKnowledgeEntries(locals);
-  return knowledges.map((knowledge) => pathFromKnowledge(knowledge));
+  return getKnowledgePageEntries({ cache: dev ? "1d" : undefined, pocketbase: getPocketbase() });
 };
 
 // LOAD ************************************************************************************************************************************
-export const load: PageServerLoad = async ({ locals, params: { knowledge } }) => {
-  const isHome = knowledge === undefined;
-  const { page, ...data } = await getKnowledgePage(knowledge ?? "traditions-ancestrales", locals);
-  const events = data.events.map((event) => itemFromEvent(event));
-  const post = isHome ? { ...itemFromPost(page.expand.post), title: "Bienvenue" } : itemFromPost(page.expand.post);
-  const services = (page.expand.services ?? []).map((service) => itemFromService(service));
-  const trainings = services.filter(({ extra: { category } }) => category === "training");
-  const workshops = services.filter(({ extra: { category } }) => category === "workshop");
-  const consultations = services.filter(({ extra: { category } }) => category === "consult");
-  const testimonies = { image: imageFrom(page.expand.testimoniesImage), items: data.testimonies };
-  return { consultations, events, post, testimonies, trainings, workshops };
+export const load: PageServerLoad = async ({ locals: { pocketbase }, params: { knowledge } }) => {
+  const data = await getKnowledgePage(knowledge ?? "traditions-ancestrales", { cache: dev ? "1d" : undefined, pocketbase });
+  return data;
 };
 
 // ACTIONS *********************************************************************************************************************************

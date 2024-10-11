@@ -14,7 +14,7 @@
   let { data }: KnowledgeCollectionPageProps = $props();
 
   // VARS **********************************************************************************************************************************
-  let { features, image, text, title } = $derived(data.entry);
+  let { features, image, text, title } = $derived(data.single!);
   let sizes = `(min-width: 1536px) 42rem, (min-width: 1280px) 36rem, (min-width: 1024px) 28rem, (min-width: 768px) 20rem (min-width: 640px) 36rem, 100vw`;
 </script>
 

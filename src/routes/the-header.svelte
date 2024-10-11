@@ -22,22 +22,19 @@
 </script>
 
 <script lang="ts">
-  import { tv } from "tailwind-variants";
+  import { page } from "$app/stores";
   import * as Sheet from "@/lib/components/ui/sheet";
+  import { Store } from "runed";
+  import { tv } from "tailwind-variants";
   import ListIcon from "~icons/ph/list";
   import LogoIcon from "~icons/ta/logo";
-  import { Store } from "runed";
-  import { page } from "$app/stores";
 
   // PROPS *********************************************************************************************************************************
   let { class: className } = $props();
 
   // VARS **********************************************************************************************************************************
-  let scrollY = $state(0);
-
   const pageStore = new Store(page);
   let pathname = $derived(pageStore.current.url.pathname);
-  let { hero, others, pageType, theme } = $derived(pageStore.current.data);
 
   let menu = $derived({
     label: "Menu Principal",
@@ -57,8 +54,8 @@
   let rightNavs = $derived(navs.slice(Math.ceil(0.5 * navs.length)));
 </script>
 
-<div class="group-data-scrolled:bg-white group-data-scrolled:shadow-lg bg-white p-2 sm:bg-transparent {className}">
-  <nav class="sm:group-data-scrolled:justify-between container mx-auto flex items-center justify-between sm:justify-center">
+<div class="bg-white p-2 group-data-scrolled:bg-white group-data-scrolled:shadow-lg sm:bg-transparent {className}">
+  <nav class="container mx-auto flex items-center justify-between sm:justify-center sm:group-data-scrolled:justify-between">
     {@render TheLogo("sm:hidden group-data-scrolled:flex")}
     {@render NavBurger("sm:hidden")}
     {@render NavItems("hidden sm:flex")}
@@ -95,7 +92,7 @@
     {#each leftNavs as nav}{@render NavItem(nav)}{/each}
     <li>
       <a href="/">
-        <LogoIcon class="group-data-scrolled:hidden mx-8 h-20 w-20 fill-neutral-800 text-primary hover:text-primary-400" />
+        <LogoIcon class="mx-8 h-20 w-20 fill-neutral-800 text-primary hover:text-primary-400 group-data-scrolled:hidden" />
       </a>
     </li>
     {#each rightNavs as nav}{@render NavItem(nav)}{/each}

@@ -4,36 +4,34 @@
 </script>
 
 <script lang="ts">
+  import PostsItem from "@/lib/components/posts-item.svelte";
+  import { BUTTON } from "@/lib/components/ui/button";
+  import { Section } from "@/lib/components/ui/section";
+  import { Toaster } from "@/lib/components/ui/sonner";
+  import { Title } from "@/lib/components/ui/title";
+  import { cn } from "@/lib/utils";
   import "@/styles/globals.css";
   import "@/styles/theme.css";
-  import TheHeader from "./the-header.svelte";
-  import { cn } from "@/lib/utils";
-  import type { LayoutServerData } from "./$types";
-  import type { Snippet } from "svelte";
   import { Image } from "@unpic/svelte";
-  import PostsItem from "@/lib/components/posts-item.svelte";
-  import { Section } from "@/lib/components/ui/section";
-  import { Title } from "@/lib/components/ui/title";
-  import { BUTTON } from "@/lib/components/ui/button";
-  import TheNewsletter from "./the-newsletter.svelte";
-  import { Toaster } from "@/lib/components/ui/sonner";
+  import type { Snippet } from "svelte";
+  import PhoneIcon from "~icons/bi/phone";
   import AdressIcon from "~icons/bi/pin-map";
   import EmailIcon from "~icons/ph/at";
-  import PhoneIcon from "~icons/bi/phone";
   import FacebookIcon from "~icons/ph/facebook-logo-thin";
   import InstagramIcon from "~icons/ph/instagram-logo-thin";
   import YoutubeIcon from "~icons/ph/youtube-logo-thin";
+  import type { LayoutServerData } from "./$types";
   import TheContact from "./the-contact.svelte";
+  import TheHeader from "./the-header.svelte";
+  import TheNewsletter from "./the-newsletter.svelte";
 
   // PROPS *********************************************************************************************************************************
   let { children, data }: LayoutProps = $props();
-  let { config, hero, organizationPost, otherKnowledges, svContact, svNewsletter, theme } = $derived(data);
+  let { config, hero, isHome, isMain, organizationPost, otherKnowledges, svContact, svNewsletter, theme } = $derived(data);
 
   // VARS **********************************************************************************************************************************
   let scrollY = $state(0);
   let isScrolled = $derived(scrollY > 0);
-  let isMain = true;
-  let isHome = $derived(isMain && theme === "traditions-ancestrales");
 </script>
 
 <svelte:window bind:scrollY />

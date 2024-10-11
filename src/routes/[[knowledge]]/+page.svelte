@@ -6,8 +6,8 @@
 <script lang="ts">
   import PostsItem from "@/lib/components/posts-item.svelte";
   import RecordsItems from "@/lib/components/records-items.svelte";
-  import TheTestimonies from "../the-testimonies.svelte";
   import type { PageServerData } from "./$types";
+  import TheTestimonies from "./the-testimonies.svelte";
 
   // PROPS *********************************************************************************************************************************
   let { data }: KnowledgePageProps = $props();
