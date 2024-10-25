@@ -1,5 +1,5 @@
 import { ZOD_POCKETBASE_URL } from "$env/static/private";
-import type { TypedPocketbase } from "@/lib/pocketbase/generated";
+import type { TypedPocketbase } from "@/lib/pocketbase/schemas";
 import Pocketbase from "pocketbase";
 
 let pocketbase: TypedPocketbase;

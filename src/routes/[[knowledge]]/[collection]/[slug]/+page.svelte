@@ -4,9 +4,9 @@
 </script>
 
 <script lang="ts">
-  import { Features } from "@/lib/components/ui/features";
-  import { Section } from "@/lib/components/ui/section";
-  import { Title } from "@/lib/components/ui/title";
+  import { Features } from "@/components/ui/features";
+  import { Section } from "@/components/ui/section";
+  import { Title } from "@/components/ui/title";
   import { Image } from "@unpic/svelte";
   import type { PageServerData } from "./$types";
 

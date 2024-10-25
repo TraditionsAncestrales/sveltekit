@@ -4,9 +4,9 @@
 </script>
 
 <script lang="ts">
-  import { Section } from "@/lib/components/ui/section";
-  import { Title } from "@/lib/components/ui/title";
-  import type { TestimoniesRecord } from "@/lib/pocketbase/generated";
+  import { Section } from "@/components/ui/section";
+  import { Title } from "@/components/ui/title";
+  import type { TestimoniesRecord } from "@/lib/pocketbase/schemas";
   import type { Image } from "@/lib/pocketbase/utils";
   import { Image as Img } from "@unpic/svelte";
   import { fly } from "svelte/transition";

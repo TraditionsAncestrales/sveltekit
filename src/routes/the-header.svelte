@@ -23,7 +23,7 @@
 
 <script lang="ts">
   import { page } from "$app/stores";
-  import * as Sheet from "@/lib/components/ui/sheet";
+  import * as Sheet from "@/components/ui/sheet";
   import { Store } from "runed";
   import { tv } from "tailwind-variants";
   import ListIcon from "~icons/ph/list";

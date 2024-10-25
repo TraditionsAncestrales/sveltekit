@@ -4,8 +4,8 @@
 </script>
 
 <script lang="ts">
-  import PostsItem from "@/lib/components/posts-item.svelte";
-  import RecordsItems from "@/lib/components/records-items.svelte";
+  import PostsItem from "@/components/posts-item.svelte";
+  import RecordsItems from "@/components/records-items.svelte";
   import type { PageServerData } from "./$types";
   import TheTestimonies from "./the-testimonies.svelte";
 

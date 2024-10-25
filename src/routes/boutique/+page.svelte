@@ -4,7 +4,7 @@
 </script>
 
 <script lang="ts">
-  import RecordsItems from "@/lib/components/records-items.svelte";
+  import RecordsItems from "@/components/records-items.svelte";
   import type { PageServerData } from "./$types";
 
   // PROPS *********************************************************************************************************************************

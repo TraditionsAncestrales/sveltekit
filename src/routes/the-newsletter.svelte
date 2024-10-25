@@ -17,17 +17,16 @@
 </script>
 
 <script lang="ts">
-  import { Section, type SectionProps } from "@/lib/components/ui/section";
-  import { Title } from "@/lib/components/ui/title";
-  import * as Form from "@/lib/components/ui/form";
-  import { Input } from "@/lib/components/ui/input";
+  import * as Form from "@/components/ui/form";
+  import { Input } from "@/components/ui/input";
+  import { Section, type SectionProps } from "@/components/ui/section";
+  import { Title } from "@/components/ui/title";
+  import { toast } from "svelte-sonner";
   import { superForm, type SuperValidated } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
-  import { toast } from "svelte-sonner";
   import { tv } from "tailwind-variants";
-  import { zNewsletterValues, type NewsletterValues, type Message } from "./utils";
-  import SubmitIcon from "~icons/bi/envelope-plus";
-  import SubmittingIcon from "~icons/bi/envelope-plus";
+  import { default as SubmitIcon, default as SubmittingIcon } from "~icons/bi/envelope-plus";
+  import { zNewsletterValues, type Message, type NewsletterValues } from "./utils";
 
   // PROPS ***********************************************************************************************************************************
   const { sv, ...rest }: TheNewsletterProps = $props();

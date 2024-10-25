@@ -12,20 +12,19 @@
 </script>
 
 <script lang="ts">
-  import { Input } from "@/lib/components/ui/input";
-  import { Section, type SectionProps } from "@/lib/components/ui/section";
-  import { Title } from "@/lib/components/ui/title";
+  import { browser } from "$app/environment";
+  import * as Form from "@/components/ui/form";
+  import { Input } from "@/components/ui/input";
+  import { Section, type SectionProps } from "@/components/ui/section";
+  import { Textarea } from "@/components/ui/textarea";
+  import { Title } from "@/components/ui/title";
   import { cn } from "@/lib/utils";
   import { toast } from "svelte-sonner";
-  import * as Form from "@/lib/components/ui/form";
-  import { Textarea } from "@/lib/components/ui/textarea";
   import { superForm, type SuperValidated } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
-  import { zContactValues, type ContactValues, type Message } from "./utils";
-  import SubmitIcon from "~icons/bi/envelope-plus";
-  import SubmittingIcon from "~icons/bi/envelope-plus";
-  import { browser } from "$app/environment";
+  import { default as SubmitIcon, default as SubmittingIcon } from "~icons/bi/envelope-plus";
   import Map from "./the-contact.map.svelte";
+  import { zContactValues, type ContactValues, type Message } from "./utils";
 
   // PROPS *********************************************************************************************************************************
   let { sv, ...rest }: TheContactProps = $props();

@@ -4,11 +4,12 @@
 </script>
 
 <script lang="ts">
-  import PostsItem from "@/lib/components/posts-item.svelte";
-  import { BUTTON } from "@/lib/components/ui/button";
-  import { Section } from "@/lib/components/ui/section";
-  import { Toaster } from "@/lib/components/ui/sonner";
-  import { Title } from "@/lib/components/ui/title";
+  import { onNavigate } from "$app/navigation";
+  import PostsItem from "@/components/posts-item.svelte";
+  import { BUTTON } from "@/components/ui/button";
+  import { Section } from "@/components/ui/section";
+  import { Toaster } from "@/components/ui/sonner";
+  import { Title } from "@/components/ui/title";
   import { cn } from "@/lib/utils";
   import "@/styles/globals.css";
   import "@/styles/theme.css";
@@ -32,6 +33,18 @@
   // VARS **********************************************************************************************************************************
   let scrollY = $state(0);
   let isScrolled = $derived(scrollY > 0);
+
+  // LIFECYCLE *****************************************************************************************************************************
+  onNavigate((navigation) => {
+    if (!document.startViewTransition) return;
+
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
+  });
 </script>
 
 <svelte:window bind:scrollY />
