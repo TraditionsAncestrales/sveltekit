@@ -40,7 +40,7 @@ export const imageFrom = allowUndefined(strictImageFrom);
 // KNOWLEDGE *******************************************************************************************************************************
 async function strictItemFromKnowledge(knowledge: KnowledgeForItem) {
   const { image, name: title, slug, text } = knowledge;
-  return { href: `/${slug}`, image: await imageFrom(image), slug, text, title };
+  return { href: hrefFromKnowledge(knowledge).slice(0, -1), image: await imageFrom(image), slug, text, title };
 }
 export const itemFromKnowledge = allowUndefined(strictItemFromKnowledge);
 
