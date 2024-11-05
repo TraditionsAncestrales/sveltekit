@@ -25,6 +25,7 @@
   import TheContact from "./the-contact.svelte";
   import TheHeader from "./the-header.svelte";
   import TheNewsletter from "./the-newsletter.svelte";
+  import TheProgress from "./the-progress.svelte";
 
   // PROPS *********************************************************************************************************************************
   let { children, data }: LayoutProps = $props();
@@ -37,7 +38,6 @@
   // LIFECYCLE *****************************************************************************************************************************
   onNavigate((navigation) => {
     if (!document.startViewTransition) return;
-
     return new Promise((resolve) => {
       document.startViewTransition(async () => {
         resolve();
@@ -49,6 +49,7 @@
 
 <svelte:window bind:scrollY />
 <div class="group" data-scrolled={isScrolled} data-theme={theme}>
+  <TheProgress class="fixed inset-x-0 top-0 z-50" />
   <TheHeader class="fixed left-0 top-0 z-30 w-full" />
   {@render TheHero(isMain ? "h-screen" : "h-[50vh]")}
   {@render children()}
@@ -65,7 +66,7 @@
   {@const { image, subtitle, title } = hero}
   {@const cMask = `[mask-image:url(/splash.webp)] [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat]`}
   <div class={cn("relative flex w-full items-center justify-center bg-cover bg-center font-bold", className)}>
-    <Image {...image} layout="fullWidth" priority objectFit="cover" class="absolute inset-0 h-full w-full" />
+    {#key image}<Image {...image} priority sizes="100vw" class="absolute inset-0 h-full !max-h-none w-full !max-w-none" />{/key}
     <div class="relative py-40 text-center uppercase tracking-widest text-white">
       <div class={cn("absolute inset-0 bg-primary", cMask)}></div>
       <h1 class="relative my-2 max-w-2xl text-4xl sm:text-7xl">{title}</h1>
@@ -83,10 +84,8 @@
         {#snippet Header()}<Title text={title} class="mb-8" />{/snippet}
         {#snippet Aside()}<Image
             {...image}
-            objectFit="cover"
-            width={512}
-            sizes="(min-width: 768px) 20rem, (min-width: 640px) 36rem, 100vw"
-            aspectRatio={3 / 2}
+            breakpoints={[320, 640, 960, 1280, 1600, 1920]}
+            sizes="(min-width: 768px) 20rem, calc(100vw - 7rem - 15px)"
             class="relative aspect-[3/2] shadow-lg shadow-black/50"
           />{/snippet}
         <article>{@html text}</article>
@@ -98,7 +97,7 @@
         class="group/k relative hidden h-[600px] w-1/4 flex-col items-center justify-center overflow-hidden lg:flex"
         data-theme={slug}
       >
-        <Image {...image} objectFit="cover" height={600} width={512} sizes="25vw" class={cn(cAbs, "-z-20 group-hover/k:scale-105")} />
+        <Image {...image} breakpoints={[320, 640, 960, 1280]} sizes="25vw" class={cn(cAbs, "-z-20 group-hover/k:scale-105")} />
         <div class={cn(cAbs, "-z-10 translate-y-full bg-primary group-hover/k:translate-y-0")}>
           <div class="mt-[150px] px-4 text-center">
             <article>{@html text}</article>

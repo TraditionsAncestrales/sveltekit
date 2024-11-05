@@ -46,7 +46,7 @@
     <ul class="splide__list">
       {#each items as { features, href, image, slug, text, title }}
         <li class="splide__slide mb-2 flex flex-col bg-white shadow-md" data-slug={slug}>
-          <Image {...image} width={384} aspectRatio={3 / 2} sizes="24rem" objectFit="cover" class="relative aspect-[3/2] flex-none" />
+          <Image {...image} breakpoints={[480, 960]} sizes="24rem" class="!aspect-[3/2] flex-none" />
           <div class="flex flex-1 flex-col gap-4 p-4 px-6 sm:px-8">
             <h4 class={TITLE()}>{title}</h4>
             <Features {features} intent="white" />

@@ -33,7 +33,7 @@ export const itemFromEvent = allowUndefined(strictItemFromEvent);
 async function strictImageFrom({ alt, height, id, src, width }: ImageForEntry) {
   const blurhashRes = await fetch(`${PUBLIC_IMGIX_URL}/${id}/${src}?fm=blurhash&w=50`);
   const blurhash = await blurhashRes.text();
-  return { alt, aspectRatio: width / height, background: blurhashToCssGradientString(blurhash), src: `${PUBLIC_IMGIX_URL}/${id}/${src}` };
+  return { alt, background: blurhashToCssGradientString(blurhash), src: `${PUBLIC_IMGIX_URL}/${id}/${src}`, height, width };
 }
 export const imageFrom = allowUndefined(strictImageFrom);
 
@@ -137,7 +137,7 @@ export function pathFromService(service: ServiceForRoute) {
 }
 
 // TYPES ***********************************************************************************************************************************
-export type Image = Awaited<NonNullable<ReturnType<typeof imageFrom>>>;
+export type Image = Awaited<NonNullable<ReturnType<typeof strictImageFrom>>>;
 
 type EventForItem = Pick<EventsRecord, "excerpt" | "from" | "name" | "slug" | "to" | "url"> & {
   image: ImageForEntry;

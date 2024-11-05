@@ -1,14 +1,14 @@
 <script lang="ts" module>
   // TYPES *********************************************************************************************************************************
-  export type TheTestimoniesProps = { image?: Image; items: Pick<TestimoniesRecord, "author" | "text" | "title">[] };
+  export type TheTestimoniesProps = { image?: ImageData; items: Pick<TestimoniesRecord, "author" | "text" | "title">[] };
 </script>
 
 <script lang="ts">
   import { Section } from "@/components/ui/section";
   import { Title } from "@/components/ui/title";
   import type { TestimoniesRecord } from "@/lib/pocketbase/schemas";
-  import type { Image } from "@/lib/pocketbase/utils";
-  import { Image as Img } from "@unpic/svelte";
+  import type { Image as ImageData } from "@/lib/pocketbase/utils";
+  import { Image } from "@unpic/svelte";
   import { fly } from "svelte/transition";
 
   // PROPS *********************************************************************************************************************************
@@ -29,14 +29,14 @@
 
 {#if item}
   <Section class="relative">
-    {#if image}<Img {...image} objectFit="cover" layout="fullWidth" height={596} class="absolute inset-0" />{/if}
+    {#if image}<Image {...image} breakpoints={[320]} sizes="100vw" class="absolute inset-0 h-full scale-105 blur-sm" />{/if}
     {#snippet Header()}<Title text="Témoignages" class="z-10" />{/snippet}
     <div class="relative h-[28rem] w-full">
       {#key item}
         <div in:fly={{ y: 400, duration: 1000 }} out:fly={{ y: -400, duration: 1000 }} class={cEl}>
           <article class="max-w-4xl">
             <h5 class="mb-8 text-3xl font-bold italic">{item.title}</h5>
-            <p class="mb-4 italic">{@html item.text}</p>
+            <div class="mb-4 italic">{@html item.text}</div>
             <p class="font-bold">{item.author}</p>
           </article>
         </div>

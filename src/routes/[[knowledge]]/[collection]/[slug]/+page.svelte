@@ -21,7 +21,7 @@
 <Section asideRight border="all" intent="white">
   {#snippet Header()}<Title text={title} class="mb-8" />{/snippet}
   {#snippet Aside()}
-    {#if image}<Image {...image} width={672} {sizes} class="relative shadow-lg shadow-black/50" />{/if}
+    {#if image}<Image {...image} {sizes} class="relative shadow-lg shadow-black/50" />{/if}
     <Features {features} />
   {/snippet}
   <article>{@html text}</article>

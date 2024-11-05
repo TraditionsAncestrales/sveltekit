@@ -20,13 +20,23 @@
   let hasSome = $derived(items.length > 0);
   let isSingle = $derived(items.length === 1);
   let title = $derived(`${singular}${isSingle ? "" : "s"}`);
+
+  const imageSizes = [
+    "(min-width: 1536px) 42rem",
+    "(min-width: 1280px) 36rem",
+    "(min-width: 1024px) 28rem",
+    "(min-width: 768px) 20rem",
+    "calc(100vw - 7rem - 15px)",
+  ].join(", ");
 </script>
 
 {#if isSingle}
   {@const { features, href, image, text } = items[0]}
   <Section {intent} {...rest}>
     {#snippet Header()}<Title text={title} class="mb-8 xl:hidden" />{/snippet}
-    {#snippet Aside()}<Image {...image} class="relative shadow-lg shadow-black/50" />{/snippet}
+    {#snippet Aside()}
+      <Image {...image} breakpoints={[320, 640, 960, 1280, 1600]} sizes={imageSizes} class="relative shadow-lg shadow-black/50" />
+    {/snippet}
     <Title text={title} class="hidden self-start xl:inline-flex" />
     <Features {intent} {features} />
     <article>{@html text}</article>

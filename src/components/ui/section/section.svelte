@@ -2,7 +2,7 @@
   // STYLES **********************************************************************************************************************************
   export const SECTION = tv({
     slots: {
-      ASIDE: `empty:hidden flex-none w-full flex flex-col gap-8 max-w-xl md:max-w-xs lg:max-w-md xl:max-w-xl 2xl:max-w-2xl`,
+      ASIDE: `empty:hidden flex-none w-full flex flex-col gap-8 md:max-w-xs lg:max-w-md xl:max-w-xl 2xl:max-w-2xl`,
       BORDER: `relative w-full h-16 [mask-image:url(/border.svg)]`,
       CONTENT: `w-full flex flex-col items-center gap-8 md:flex-row md:items-start lg:gap-12`,
       HEADER: ``,
@@ -52,8 +52,8 @@
 <script lang="ts">
   import type { Intent } from "@/styles/ui";
   import type { Snippet } from "svelte";
-  import { tv } from "tailwind-variants";
   import type { HTMLAttributes } from "svelte/elements";
+  import { tv } from "tailwind-variants";
 
   // PROPS *********************************************************************************************************************************
   let {
@@ -65,6 +65,7 @@
     Aside,
     children,
     Header,
+    "data-theme": theme,
   }: SectionProps = $props();
 
   // VARS **********************************************************************************************************************************
@@ -74,7 +75,7 @@
 </script>
 
 {#if hasBorderTop}<div class={BORDER({ intent, class: ["-mt-16", C.BORDER] })}></div>{/if}
-<section class={ROOT({ border, expanded, intent, class: C.ROOT })}>
+<section data-theme={theme} class={ROOT({ border, expanded, intent, class: C.ROOT })}>
   <div class={WRAPPER({ expanded, class: C.WRAPPER })}>
     {#if Header}<div class={HEADER({ expanded, class: C.HEADER })}>{@render Header()}</div>{/if}
     <div class={CONTENT({ class: C.CONTENT })}>

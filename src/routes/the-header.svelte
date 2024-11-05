@@ -14,7 +14,7 @@
 
   const NAV_ITEM = tv({
     base: "text-xs font-bold p-2 uppercase rounded group-data-top:text-white hover:bg-primary hover:text-white",
-    variants: { isActive: { true: `bg-primary text-white` } },
+    variants: { isActive: { true: `bg-primary text-white [view-transition-name:active-page]` } },
   });
 
   // TYPES *********************************************************************************************************************************
