@@ -48,4 +48,4 @@
   }
 </script>
 
-<Progress {value} class={cn(isVisible ? "opacity-100" : "opacity-0", className)} />
+<Progress {value} aria-label="progress" class={cn(isVisible ? "opacity-100" : "opacity-0", className)} />
