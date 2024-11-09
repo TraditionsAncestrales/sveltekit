@@ -20,7 +20,7 @@ export function allowUndefined<FROM, TO>(method: (defined: FROM) => TO) {
 async function strictItemFromEvent(event: EventForItem) {
   const { excerpt: text, from, image, name: title, places, service, slug, to, url: href } = event;
   const features = [
-    { key: "Type", value: service.name },
+    { href: hrefFromService(service), key: "Type", value: service.name },
     { key: "Du", value: format(from, "full") },
     { key: "Au", value: format(to, "full") },
     { key: "Endroits", value: places.map(({ name }) => name).join(" ou ") },
@@ -142,7 +142,7 @@ export type Image = Awaited<NonNullable<ReturnType<typeof strictImageFrom>>>;
 type EventForItem = Pick<EventsRecord, "excerpt" | "from" | "name" | "slug" | "to" | "url"> & {
   image: ImageForEntry;
   places: Pick<PlacesRecord, "name">[];
-  service: Pick<ServicesRecord, "name">;
+  service: Pick<ServicesRecord, "name"> & ServiceForRoute;
 };
 type ImageForEntry = Pick<ImagesRecord, "alt" | "height" | "id" | "src" | "width">;
 type KnowledgeForItem = KnowledgeForRoute & Pick<KnowledgesRecord, "name" | "text"> & { image: ImageForEntry };
@@ -159,6 +159,7 @@ type ServiceForItem = ServiceForFeatures & ServiceForRoute & Pick<ServicesRecord
 type ServiceForRoute = ServiceForFragment & Pick<ServicesRecord, "slug"> & { knowledge: KnowledgeForRoute };
 
 export type Feature = {
+  href?: string;
   key: string;
   value: string;
 };

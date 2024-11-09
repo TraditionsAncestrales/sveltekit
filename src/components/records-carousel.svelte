@@ -1,6 +1,6 @@
 <script lang="ts" module>
   // TYPES *********************************************************************************************************************************
-  export type CarouselProps = { items: Item[]; class?: string };
+  export type CarouselProps = { class?: string; externalLink?: boolean; items: Item[]; removeStale?: boolean };
 </script>
 
 <script lang="ts">
@@ -14,11 +14,13 @@
   import { Features } from "./ui/features";
 
   // PROPS *********************************************************************************************************************************
-  let { class: className, items }: CarouselProps = $props();
+  let { class: className, externalLink = false, items, removeStale = false }: CarouselProps = $props();
 
   // VARS **********************************************************************************************************************************
   let _: HTMLDivElement;
+  let target = $derived(externalLink ? "_blank" : "_self");
 
+  // CYCLE *********************************************************************************************************************************
   $effect(() => {
     const splide = new Splide(_, {
       arrows: false,
@@ -37,6 +39,8 @@
 
     splide.mount();
 
+    if (removeStale) splide.remove(({ slide: { dataset } }) => dataset.stale && dataset.stale < new Date().toISOString());
+
     return () => splide.destroy();
   });
 </script>
@@ -50,9 +54,9 @@
           <div class="flex flex-1 flex-col gap-4 p-4 px-6 sm:px-8">
             <h4 class={TITLE()}>{title}</h4>
             <Features {features} intent="white" />
-            <article>{@html text}</article>
+            <article class="prose prose-p:my-1 prose-p:leading-normal">{@html text}</article>
             <div class="flex-1"></div>
-            <a {href} class={BUTTON({ className: "self-end" })}>En savoir plus</a>
+            <a {href} {target} class={BUTTON({ className: "self-end" })}>En savoir plus</a>
           </div>
         </li>
       {/each}

@@ -12,13 +12,13 @@
 </script>
 
 <script lang="ts">
-  import { browser } from "$app/environment";
   import * as Form from "@/components/ui/form";
   import { Input } from "@/components/ui/input";
   import { Section, type SectionProps } from "@/components/ui/section";
   import { Textarea } from "@/components/ui/textarea";
   import { Title } from "@/components/ui/title";
   import { cn } from "@/lib/utils";
+  import { inview, type ObserverEventDetails } from "svelte-inview";
   import { toast } from "svelte-sonner";
   import { superForm, type SuperValidated } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
@@ -38,13 +38,19 @@
     },
   });
   const { delayed, enhance, form, submitting } = sf;
+  let isInView = $state(false);
+
+  // EVENTS ********************************************************************************************************************************
+  function onInViewChange({ detail: { inView } }: CustomEvent<ObserverEventDetails>) {
+    isInView = inView;
+  }
 </script>
 
 <Section class="relative" {...rest}>
   {#snippet Header()}<Title text="Me contacter" class="mb-8" />{/snippet}
-  <div class="w-full gap-8 lg:flex">
+  <div use:inview={{ unobserveOnEnter: true }} oninview_change={onInViewChange} class="flex w-full justify-center gap-8 xl:justify-start">
     {@render TheForm("w-full max-w-xl pb-96 xl:pb-0")}
-    {#if browser}<Map class="absolute inset-x-0 bottom-0 z-0 h-96 xl:left-auto xl:top-0 xl:h-auto xl:w-1/2" />{/if}
+    {#if isInView}<Map class="absolute inset-x-0 bottom-0 z-0 h-96 xl:left-auto xl:top-0 xl:h-auto xl:w-1/2" />{/if}
   </div>
 </Section>
 
