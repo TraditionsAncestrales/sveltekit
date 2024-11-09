@@ -24,7 +24,6 @@ export const load: PageServerLoad = async ({ locals: { pocketbase }, params: { k
 
   const seo = Object.freeze({
     title: knowledge === "traditions-ancestrales" ? undefined : data.post.title,
-    description: data.post.text,
   });
 
   return { ...data, seo };
