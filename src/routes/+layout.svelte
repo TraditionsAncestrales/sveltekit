@@ -5,6 +5,7 @@
 
 <script lang="ts">
   import { onNavigate } from "$app/navigation";
+  import { page } from "$app/stores";
   import PostsItem from "@/components/posts-item.svelte";
   import { BUTTON } from "@/components/ui/button";
   import { Section } from "@/components/ui/section";
@@ -15,6 +16,7 @@
   import "@/styles/theme.css";
   import { Image } from "@unpic/svelte";
   import type { Snippet } from "svelte";
+  import { MetaTags, deepMerge } from "svelte-meta-tags";
   import PhoneIcon from "~icons/bi/phone";
   import AdressIcon from "~icons/bi/pin-map";
   import EmailIcon from "~icons/ph/at";
@@ -29,11 +31,12 @@
 
   // PROPS *********************************************************************************************************************************
   let { children, data }: LayoutProps = $props();
-  let { config, hero, isHome, isMain, organizationPost, otherKnowledges, svContact, svNewsletter, theme } = $derived(data);
+  let { baseSeo, config, hero, isHome, isMain, organizationPost, otherKnowledges, svContact, svNewsletter, theme } = $derived(data);
 
   // VARS **********************************************************************************************************************************
   let scrollY = $state(0);
   let isScrolled = $derived(scrollY > 0);
+  let seo = $derived(deepMerge(baseSeo, $page.data.seo));
 
   // LIFECYCLE *****************************************************************************************************************************
   onNavigate((navigation) => {
@@ -48,6 +51,7 @@
 </script>
 
 <svelte:window bind:scrollY />
+<MetaTags {...seo} />
 <div class="group" data-scrolled={isScrolled} data-theme={theme}>
   <TheProgress class="fixed inset-x-0 top-0 z-50" />
   <TheHeader class="fixed left-0 top-0 z-30 w-full" />

@@ -13,5 +13,6 @@ export const entries: EntryGenerator = async () => {
 export const load: PageServerLoad = async ({ locals: { pocketbase }, params: { collection, slug } }) => {
   const data = await getKnowledgeCollectionSlugPage(collection, slug, { pocketbase, cache: dev ? "1d" : undefined });
   if (!data.single) error(404);
-  return data;
+  const seo = { title: data.single.title, description: data.single.text };
+  return { ...data, seo };
 };

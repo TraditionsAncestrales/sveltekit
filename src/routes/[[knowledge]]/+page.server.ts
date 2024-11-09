@@ -21,7 +21,13 @@ export const entries: EntryGenerator = async () => {
 // LOAD ************************************************************************************************************************************
 export const load: PageServerLoad = async ({ locals: { pocketbase }, params: { knowledge } }) => {
   const data = await getKnowledgePage(knowledge ?? "traditions-ancestrales", { cache: dev ? "1d" : undefined, pocketbase });
-  return data;
+
+  const seo = Object.freeze({
+    title: knowledge === "traditions-ancestrales" ? undefined : data.post.title,
+    description: data.post.text,
+  });
+
+  return { ...data, seo };
 };
 
 // ACTIONS *********************************************************************************************************************************

@@ -10,5 +10,12 @@ export const load: LayoutServerLoad = async ({ locals: { pocketbase }, params, r
   const svContact = await superValidate(zod(zContactValues));
   const svNewsletter = await superValidate(zod(zNewsletterValues));
   const layoutData = await getLayout(params.knowledge, route.id === "/[[knowledge]]", { pocketbase, cache: dev ? "1d" : undefined });
-  return { ...layoutData, svContact, svNewsletter };
+
+  const baseSeo = Object.freeze({
+    title: "Le site d'Océane",
+    titleTemplate: "%s — Traditions ancestrales",
+    description: "Site d'Océane Ravasini à propos des traditions ancestrales : chamanisme, rêves, reiki et tarot.",
+  });
+
+  return { ...layoutData, baseSeo, svContact, svNewsletter };
 };
