@@ -91,7 +91,7 @@
   <ul class="flex items-center {className}">
     {#each leftNavs as nav}{@render NavItem(nav)}{/each}
     <li>
-      <a href="/">
+      <a href="/" aria-label="Retour à l'accueil">
         <LogoIcon class="mx-8 h-20 w-20 fill-neutral-800 text-primary hover:text-primary-400 group-data-scrolled:hidden" />
       </a>
     </li>
