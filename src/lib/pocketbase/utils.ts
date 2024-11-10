@@ -33,7 +33,7 @@ export const itemFromEvent = allowUndefined(strictItemFromEvent);
 async function strictImageFrom({ alt, height, id, src, width }: ImageForEntry) {
   const blurhashRes = await fetch(`${PUBLIC_IMGIX_URL}/${id}/${src}?fm=blurhash&w=50`);
   const blurhash = await blurhashRes.text();
-  return { alt, background: blurhashToCssGradientString(blurhash), src: `${PUBLIC_IMGIX_URL}/${id}/${src}`, height, width };
+  return { alt, background: blurhashToCssGradientString(blurhash), src: `${PUBLIC_IMGIX_URL}/${id}/${src}?q=50`, height, width };
 }
 export const imageFrom = allowUndefined(strictImageFrom);
 
