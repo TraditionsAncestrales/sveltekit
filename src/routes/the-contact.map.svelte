@@ -5,13 +5,12 @@
 </script>
 
 <script lang="ts">
-  import "leaflet/dist/leaflet.css";
-
   // PROPS *********************************************************************************************************************************
   let { class: className, options = { lat: -21.142_107, lng: 55.294_209, zoom: 17 } }: TheContactMapProps = $props();
 
   export function setMap(mapElement: HTMLElement, { lat, lng, zoom }: SetMapOpts) {
     (async () => {
+      await import("leaflet/dist/leaflet.css");
       const L = await import("leaflet");
 
       const map = L.map(mapElement).setView([lat, lng], zoom);
