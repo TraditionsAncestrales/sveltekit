@@ -59,6 +59,7 @@
     "@unpic/placeholder": "^0.1.2",
     "@unpic/svelte": "^0.0.55",
     "clsx": "^2.1.1",
+    "cssnano": "^7.0.6",
     "formsnap": "^1.0.1",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
@@ -72,7 +73,6 @@
     "sveltekit-superforms": "^2.20.0",
     "tailwind-merge": "^2.5.4",
     "tailwind-variants": "^0.2.1",
-    "x": "link:lucide-svelte/icons/x",
     "zod": "^3.23.8",
     "zod-pocketbase": "^0.3.8"
   }
