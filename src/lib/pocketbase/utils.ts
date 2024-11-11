@@ -25,7 +25,7 @@ async function strictItemFromEvent(event: EventForItem) {
     { key: "Au", value: format(to, "full") },
     { key: "Endroits", value: places.map(({ name }) => name).join(" ou ") },
   ];
-  return { features, href, image: await imageFrom(image), slug, text, title };
+  return { features, href, image: await imageFrom(image), slug, stale: to.toISOString(), text, title };
 }
 export const itemFromEvent = allowUndefined(strictItemFromEvent);
 
@@ -171,6 +171,7 @@ type StrictItem = {
   href: string;
   image: Image;
   slug: string;
+  stale?: string;
   text: string;
   title: string;
 };

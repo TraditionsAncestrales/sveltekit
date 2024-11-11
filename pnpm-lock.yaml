@@ -32,18 +32,12 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      formsnap:
-        specifier: ^1.0.1
-        version: 1.0.1(svelte@5.1.13)(sveltekit-superforms@2.20.0(@sveltejs/kit@2.8.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3))
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4
       leaflet-defaulticon-compatibility:
         specifier: ^0.1.2
         version: 0.1.2
-      lucide-svelte:
-        specifier: ^0.456.0
-        version: 0.456.0(svelte@5.1.13)
       md5:
         specifier: ^2.3.0
         version: 2.3.0
@@ -59,21 +53,12 @@ importers:
       svelte-inview:
         specifier: ^4.0.4
         version: 4.0.4(svelte@5.1.13)
-      svelte-sonner:
-        specifier: ^0.3.28
-        version: 0.3.28(svelte@5.1.13)
-      sveltekit-superforms:
-        specifier: ^2.20.0
-        version: 2.20.0(@sveltejs/kit@2.8.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3)
       tailwind-merge:
         specifier: ^2.5.4
         version: 2.5.4
       tailwind-variants:
         specifier: ^0.2.1
         version: 0.2.1(tailwindcss@3.4.14)
-      zod:
-        specifier: ^3.23.8
-        version: 3.23.8
       zod-pocketbase:
         specifier: ^0.3.8
         version: 0.3.8(pocketbase@0.21.5)(zod@3.23.8)
@@ -118,8 +103,11 @@ importers:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.48)
       bits-ui:
-        specifier: 1.0.0-next.40
-        version: 1.0.0-next.40(svelte@5.1.13)
+        specifier: 1.0.0-next.49
+        version: 1.0.0-next.49(svelte@5.1.13)
+      embla-carousel-svelte:
+        specifier: ^8.3.1
+        version: 8.3.1(svelte@5.1.13)
       eslint:
         specifier: ^9.14.0
         version: 9.14.0(jiti@2.4.0)
@@ -135,9 +123,18 @@ importers:
       fontaine:
         specifier: ^0.5.0
         version: 0.5.0
+      formsnap:
+        specifier: 2.0.0-next.1
+        version: 2.0.0-next.1(svelte@5.1.13)(sveltekit-superforms@2.20.0(@sveltejs/kit@2.8.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3))
       globals:
         specifier: ^15.12.0
         version: 15.12.0
+      lucide-svelte:
+        specifier: ^0.456.0
+        version: 0.456.0(svelte@5.1.13)
+      mode-watcher:
+        specifier: ^0.4.1
+        version: 0.4.1(svelte@5.1.13)
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -159,6 +156,12 @@ importers:
       svelte-sitemap:
         specifier: ^2.6.0
         version: 2.6.0
+      svelte-sonner:
+        specifier: ^0.3.28
+        version: 0.3.28(svelte@5.1.13)
+      sveltekit-superforms:
+        specifier: ^2.20.0
+        version: 2.20.0(@sveltejs/kit@2.8.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3)
       tailwindcss:
         specifier: ^3.4.14
         version: 3.4.14
@@ -177,6 +180,9 @@ importers:
       vitest:
         specifier: ^2.1.4
         version: 2.1.4(@types/node@22.9.0)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
 
 packages:
 
@@ -1158,8 +1164,8 @@ packages:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
 
-  bits-ui@1.0.0-next.40:
-    resolution: {integrity: sha512-/p86xBAREF9/Uk0aDY/zYevTzFsWQ1Rze9baWdk0UXbfSUNZjsAo9+PjtuQJz/K2/7oiDkv/K5zuk51PJiC4Hw==}
+  bits-ui@1.0.0-next.49:
+    resolution: {integrity: sha512-7EoNj7pu9+RVv6MM1kGVvDzH2aA38v07Q+BDSq8yiLIHxZ5dTkDHwoikhtT/+jMU25c0uYvHq44GEQX+027IFw==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.0.0-next.1
@@ -1448,6 +1454,19 @@ packages:
   electron-to-chromium@1.5.55:
     resolution: {integrity: sha512-6maZ2ASDOTBtjt9FhqYPRnbvKU5tjG0IN9SztUOWYw2AzNDNpKJYLJmlK0/En4Hs/aiWnB+JZ+gW19PIGszgKg==}
 
+  embla-carousel-reactive-utils@8.3.1:
+    resolution: {integrity: sha512-Js6rTTINNGnUGPu7l5kTcheoSbEnP5Ak2iX0G9uOoI8okTNLMzuWlEIpYFd1WP0Sq82FFcLkKM2oiO6jcElZ/Q==}
+    peerDependencies:
+      embla-carousel: 8.3.1
+
+  embla-carousel-svelte@8.3.1:
+    resolution: {integrity: sha512-dD+NpbJJEkyGL2NtXKCIkBN51Lj4V6pRh85lpXfjh690UTvJsO5Zdp6xZ6nBTOjSsQ5IczdEXvv3DrvXfyg1SA==}
+    peerDependencies:
+      svelte: ^3.49.0 || ^4.0.0 || ^5.0.0
+
+  embla-carousel@8.3.1:
+    resolution: {integrity: sha512-DutFjtEO586XptDn4cwvBJwsR/8fMa4jUk5Jk2g+/elKgu8mdn0Z2sx33g4JskvbLc1/6P8Xg4QlfELGJFcP5A==}
+
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
 
@@ -1693,11 +1712,12 @@ packages:
     resolution: {integrity: sha512-KcpbcpuLNOwrEjnbpMC0gS+X8ciDoZE1kkqzat4a8vrprf+s9pKNQ/QIwWfbfs4ltgmFl3MD177SNTkve3BwGQ==}
     deprecated: 'Please upgrade to latest, formidable@v2 or formidable@v3! Check these notes: https://bit.ly/2ZEqIau'
 
-  formsnap@1.0.1:
-    resolution: {integrity: sha512-TvU9CoLSiacW1c7wXhLiyVpyy/LBfG0CEFDbs3M3jrsxBSrkTpsuhbQ8JYKY3CNCmIhZlgxCH+Vqr7RBF9G53w==}
+  formsnap@2.0.0-next.1:
+    resolution: {integrity: sha512-ha8r9eMmsGEGMY+ljV3FEyTtB72E7dt95y9HHUbCcaDnjbz3Q6n00BHLz7dfBZ9rqyaMeIO200EmP1IcYMExeg==}
+    engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
-      svelte: ^4.0.0 || ^5.0.0-next.1
-      sveltekit-superforms: ^2.3.0
+      svelte: ^5.0.0
+      sveltekit-superforms: ^2.19.0
 
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
@@ -2148,6 +2168,11 @@ packages:
   mlly@1.7.2:
     resolution: {integrity: sha512-tN3dvVHYVz4DhSXinXIk7u9syPYaJvio118uomkovAtWBT+RdbP6Lfh/5Lvo519YMmwBafwlh20IPTXIStscpA==}
 
+  mode-watcher@0.4.1:
+    resolution: {integrity: sha512-bNC+1NXmwEFZtziCdZSgP7HFQTpqJPcQn9GwwJQGSf6SBF3neEPYV1uRwkYuAQwbsvsXIYtzaqgedDzJ7D1mhg==}
+    peerDependencies:
+      svelte: ^4.0.0 || ^5.0.0-next.1
+
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -2165,11 +2190,6 @@ packages:
   nanoid@3.3.7:
     resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-
-  nanoid@5.0.8:
-    resolution: {integrity: sha512-TcJPw+9RV9dibz1hHUzlLVy8N4X9TnwirAjrU08Juo6BNKggzVfP2ZJ/3ZUSq15Xl5i85i+Z89XBO90pB2PghQ==}
-    engines: {node: ^18 || >=20}
     hasBin: true
 
   natural-compare@1.4.0:
@@ -4229,7 +4249,7 @@ snapshots:
 
   binary-extensions@2.3.0: {}
 
-  bits-ui@1.0.0-next.40(svelte@5.1.13):
+  bits-ui@1.0.0-next.49(svelte@5.1.13):
     dependencies:
       '@floating-ui/core': 1.6.8
       '@floating-ui/dom': 1.6.12
@@ -4505,6 +4525,18 @@ snapshots:
     optional: true
 
   electron-to-chromium@1.5.55: {}
+
+  embla-carousel-reactive-utils@8.3.1(embla-carousel@8.3.1):
+    dependencies:
+      embla-carousel: 8.3.1
+
+  embla-carousel-svelte@8.3.1(svelte@5.1.13):
+    dependencies:
+      embla-carousel: 8.3.1
+      embla-carousel-reactive-utils: 8.3.1(embla-carousel@8.3.1)
+      svelte: 5.1.13
+
+  embla-carousel@8.3.1: {}
 
   emoji-regex@8.0.0: {}
 
@@ -4860,10 +4892,10 @@ snapshots:
 
   formidable@1.2.6: {}
 
-  formsnap@1.0.1(svelte@5.1.13)(sveltekit-superforms@2.20.0(@sveltejs/kit@2.8.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3)):
+  formsnap@2.0.0-next.1(svelte@5.1.13)(sveltekit-superforms@2.20.0(@sveltejs/kit@2.8.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3)):
     dependencies:
-      nanoid: 5.0.8
       svelte: 5.1.13
+      svelte-toolbelt: 0.4.6(svelte@5.1.13)
       sveltekit-superforms: 2.20.0(@sveltejs/kit@2.8.0(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(svelte@5.1.13)(vite@5.4.10(@types/node@22.9.0)))(@types/json-schema@7.0.15)(svelte@5.1.13)(typescript@5.6.3)
 
   fraction.js@4.3.7: {}
@@ -5288,6 +5320,10 @@ snapshots:
       pkg-types: 1.2.1
       ufo: 1.5.4
 
+  mode-watcher@0.4.1(svelte@5.1.13):
+    dependencies:
+      svelte: 5.1.13
+
   mri@1.2.0: {}
 
   mrmime@2.0.0: {}
@@ -5301,8 +5337,6 @@ snapshots:
       thenify-all: 1.6.0
 
   nanoid@3.3.7: {}
-
-  nanoid@5.0.8: {}
 
   natural-compare@1.4.0: {}
 

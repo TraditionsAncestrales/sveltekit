@@ -23,7 +23,7 @@ export const load: PageServerLoad = async ({ locals: { pocketbase }, params: { k
   const data = await getKnowledgePage(knowledge ?? "traditions-ancestrales", { cache: dev ? "1d" : undefined, pocketbase });
 
   const seo = Object.freeze({
-    title: knowledge === "traditions-ancestrales" ? undefined : data.post.title,
+    title: knowledge ? data.post.title : undefined,
   });
 
   return { ...data, seo };

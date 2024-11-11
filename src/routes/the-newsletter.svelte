@@ -52,8 +52,10 @@
     </p>
     <form method="POST" action="/?/subscribeToNewsletter" use:enhance novalidate class={FORM({ className: "flex-1" })}>
       <Form.Field form={sf} name="email" class="w-full sm:max-w-xs xl:max-w-sm">
-        <Form.Control let:attrs>
-          <Input {...attrs} type="email" placeholder="Votre courriel..." bind:value={$form.email} class={INPUT} />
+        <Form.Control>
+          {#snippet children({ props })}
+            <Input {...props} type="email" placeholder="Votre courriel..." bind:value={$form.email} class={INPUT} />
+          {/snippet}
         </Form.Control>
         <Form.FieldErrors class="absolute text-destructive-400" />
       </Form.Field>

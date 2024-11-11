@@ -57,23 +57,29 @@
 {#snippet TheForm(className?: string)}
   <form method="POST" action="/?/sendMessage" use:enhance class={cn("flex flex-col gap-4", className)}>
     <Form.Field form={sf} name="fullname">
-      <Form.Control let:attrs>
-        <Form.Label>Votre nom</Form.Label>
-        <Input {...attrs} bind:value={$form.fullname} />
+      <Form.Control>
+        {#snippet children({ props })}
+          <Form.Label>Votre nom</Form.Label>
+          <Input {...props} bind:value={$form.fullname} />
+        {/snippet}
       </Form.Control>
       <Form.FieldErrors />
     </Form.Field>
     <Form.Field form={sf} name="email">
-      <Form.Control let:attrs>
-        <Form.Label>Votre courriel</Form.Label>
-        <Input type="email" {...attrs} bind:value={$form.email} />
+      <Form.Control>
+        {#snippet children({ props })}
+          <Form.Label>Votre courriel</Form.Label>
+          <Input type="email" {...props} bind:value={$form.email} />
+        {/snippet}
       </Form.Control>
       <Form.FieldErrors />
     </Form.Field>
     <Form.Field form={sf} name="message">
-      <Form.Control let:attrs>
-        <Form.Label>Votre message</Form.Label>
-        <Textarea rows={5} {...attrs} bind:value={$form.message} />
+      <Form.Control>
+        {#snippet children({ props })}
+          <Form.Label>Votre message</Form.Label>
+          <Textarea rows={5} {...props} bind:value={$form.message} />
+        {/snippet}
       </Form.Control>
       <Form.FieldErrors />
     </Form.Field>

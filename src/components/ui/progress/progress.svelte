@@ -1,12 +1,14 @@
-<script lang="ts" module>
-  export type ProgressProps = WithoutChildrenOrChild<ProgressPrimitive.RootProps>;
-</script>
-
 <script lang="ts">
   import { cn } from "@/lib/utils.js";
   import { Progress as ProgressPrimitive, type WithoutChildrenOrChild } from "bits-ui";
 
-  let { ref = $bindable(null), class: className, max = 100, value, ...restProps }: ProgressProps = $props();
+  let {
+    ref = $bindable(null),
+    class: className,
+    max = 100,
+    value,
+    ...restProps
+  }: WithoutChildrenOrChild<ProgressPrimitive.RootProps> = $props();
 </script>
 
 <ProgressPrimitive.Root bind:ref class={cn("relative h-1 w-full overflow-hidden", className)} {value} {max} {...restProps}>

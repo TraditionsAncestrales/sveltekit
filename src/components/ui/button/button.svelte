@@ -1,7 +1,6 @@
 <script lang="ts" module>
   // TYPES *********************************************************************************************************************************
-  // @ts-ignore
-  export type ButtonProps = Omit<ButtonPrimitive.Props, "on:copy"> & { intent?: Intent };
+  export type ButtonProps = WithElementRef<HTMLButtonAttributes> & WithElementRef<HTMLAnchorAttributes> & { intent?: Intent };
 
   // STYLES ********************************************************************************************************************************
   export const btnIntent = (intent: Intent) => [bg(intent), hoverBg(intent), disabledBg(intent), focusRing(intent)].join(" ");
@@ -24,15 +23,29 @@
 </script>
 
 <script lang="ts">
-  import { cn } from "@/lib/utils";
+  import { cn } from "@/lib/utils.js";
   import { bg, disabledBg, focusRing, hoverBg, text, type Intent } from "@/styles/ui";
-  import { Button as ButtonPrimitive } from "bits-ui";
+  import type { WithElementRef } from "bits-ui";
+  import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
   import { tv } from "tailwind-variants";
 
-  // PROPS *********************************************************************************************************************************
-  let { builders = [], children, class: className, intent, ...rest }: ButtonProps = $props();
+  let {
+    class: className,
+    intent,
+    ref = $bindable(null),
+    href = undefined,
+    type = "button",
+    children,
+    ...restProps
+  }: ButtonProps = $props();
 </script>
 
-<ButtonPrimitive.Root type="button" {builders} class={cn(BUTTON({ intent, className }))} {...rest}>
-  {@render children?.()}
-</ButtonPrimitive.Root>
+{#if href}
+  <a bind:this={ref} class={cn(BUTTON({ intent, className }))} {href} {...restProps}>
+    {@render children?.()}
+  </a>
+{:else}
+  <button bind:this={ref} class={cn(BUTTON({ intent, className }))} {type} {...restProps}>
+    {@render children?.()}
+  </button>
+{/if}

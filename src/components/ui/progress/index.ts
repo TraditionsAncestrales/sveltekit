@@ -1,8 +1,1 @@
-import Root, { type ProgressProps } from "./progress.svelte";
-
-export {
-  //
-  Root as Progress,
-  Root,
-  type ProgressProps,
-};
+export { default as Progress, default as Root } from "./progress.svelte";
