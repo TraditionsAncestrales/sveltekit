@@ -30,7 +30,7 @@
 
 {#if text}
   <div class={ROOT({ className: C.ROOT })}>
-    <StainIcon width="100%" height="100%" class={STAIN({ className: C.STAIN ?? "-top-1 text-primary-300" })} />
+    <StainIcon width="100%" height="100%" class={STAIN({ className: C.STAIN ?? "-top-1 text-primary-400" })} />
     <h3 class={TEXT({ className: C.TEXT ?? "px-6 py-2 text-3xl" })}>{text}</h3>
   </div>
 {/if}

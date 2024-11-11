@@ -21,10 +21,8 @@ export default {
         background: "hsl(var(--background) / <alpha-value>)",
         foreground: "hsl(var(--foreground) / <alpha-value>)",
         primary: {
-          DEFAULT: "rgb(var(--primary) / <alpha-value>)",
-          200: "rgb(var(--primary-200) / <alpha-value>)",
-          300: "rgb(var(--primary-300) / <alpha-value>)",
-          400: "rgb(var(--primary-400) / <alpha-value>)",
+          DEFAULT: "hsl(var(--primary) / <alpha-value>)",
+          400: "hsl(var(--primary-400) / <alpha-value>)",
           foreground: "hsl(var(--primary-foreground) / <alpha-value>)",
         },
         secondary: {

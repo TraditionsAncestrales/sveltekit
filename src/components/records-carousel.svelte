@@ -50,7 +50,7 @@
     <ul class="splide__list">
       {#each items as { features, href, image, slug, text, title }}
         <li class="splide__slide mb-2 flex flex-col bg-white shadow-md" data-slug={slug}>
-          <Image {...image} breakpoints={[480, 960]} sizes="24rem" class="!aspect-[3/2] flex-none" />
+          <Image {...image} height={256} width={384} breakpoints={[384, 768]} sizes="24rem" class="flex-none" />
           <div class="flex flex-1 flex-col gap-4 p-4 px-6 sm:px-8">
             <h4 class={TITLE()}>{title}</h4>
             <Features {features} intent="white" />
@@ -66,7 +66,7 @@
 
 <style>
   :global(.splide__arrow) {
-    background-color: rgb(var(--primary)) !important;
+    background-color: hsl(var(--primary)) !important;
   }
 
   :global(.splide__arrow svg) {

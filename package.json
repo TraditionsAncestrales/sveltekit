@@ -39,7 +39,7 @@
     "prettier": "^3.3.3",
     "prettier-plugin-svelte": "^3.2.7",
     "prettier-plugin-tailwindcss": "^0.6.8",
-    "svelte": "^5.1.12",
+    "svelte": "^5.1.13",
     "svelte-check": "^4.0.6",
     "svelte-meta-tags": "^4.0.4",
     "svelte-sitemap": "^2.6.0",
@@ -53,7 +53,7 @@
   "dependencies": {
     "@fontsource-variable/raleway": "^5.1.0",
     "@formkit/tempo": "^0.1.2",
-    "@iconify/json": "^2.2.269",
+    "@iconify/json": "^2.2.270",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@splidejs/splide": "^4.1.4",
     "@unpic/placeholder": "^0.1.2",

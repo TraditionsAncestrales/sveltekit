@@ -123,7 +123,7 @@
 <!-- THE FOOTER -->
 {#snippet TheFooter(className?: string)}
   {@const { email, facebook, instagram, phone, street, zipcode, city } = config}
-  {@const SOCIAL = "text-primary hover:text-primary-300"}
+  {@const SOCIAL = "text-primary hover:text-primary-400"}
   <Section border="top" intent="dark" class={cn("items-center text-white", className)}>
     <div class="container flex flex-col justify-between gap-8 sm:flex-row sm:items-center">
       <div class="flex flex-col">

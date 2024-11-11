@@ -14,7 +14,7 @@
 </script>
 
 {#if features.length > 0}
-  <dl class={cn("w-full p-4", intent === "white" ? "bg-primary-200" : "bg-white/25", className)}>
+  <dl class={cn("w-full p-4", intent === "white" ? "bg-primary/20" : "bg-white/25", className)}>
     {#each features as { href, key, value }}<div class="flex gap-2">
         <dd class="flex-none font-bold">{key} :</dd>
         <dt>
