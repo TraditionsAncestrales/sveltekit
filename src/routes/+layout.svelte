@@ -68,7 +68,7 @@
 <!-- THE HERO -->
 {#snippet TheHero(className: string)}
   {@const { image, subtitle, title } = hero}
-  {@const cMask = `[mask-image:url(https://niama-traditions-ancestrales.imgix.net/l5oxjx4c9kltz0d/splash_JaAKBlu3Mz.webp?auto=format&q=50)] [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat]`}
+  {@const cMask = `[mask-image:url(/splash_JaAKBlu3Mz.avif)] [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat]`}
   <div class={cn("relative flex w-full items-center justify-center bg-cover bg-center font-bold", className)}>
     {#key image}<Image {...image} priority sizes="100vw" class="absolute inset-0 h-full !max-h-none w-full !max-w-none" />{/key}
     <div class="relative py-40 text-center uppercase tracking-widest text-white">
