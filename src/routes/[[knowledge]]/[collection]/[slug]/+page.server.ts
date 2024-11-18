@@ -1,8 +1,12 @@
 import { dev } from "$app/environment";
+import { VERCEL_REVALIDATE_TOKEN } from "$env/static/private";
 import { getKnowledgeCollectionSlugPage, getKnowledgeCollectionSlugPageEntries } from "@/lib/api";
 import { getPocketbase } from "@/lib/pocketbase/server";
 import { error } from "@sveltejs/kit";
 import type { EntryGenerator, PageServerLoad } from "./$types";
+
+// CONFIG **********************************************************************************************************************************
+export const config = { isr: { bypassToken: VERCEL_REVALIDATE_TOKEN } };
 
 // ENTRIES *********************************************************************************************************************************
 export const entries: EntryGenerator = async () => {

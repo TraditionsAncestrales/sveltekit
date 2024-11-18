@@ -10,6 +10,9 @@ import {
   entryFromKnowledge,
   entryFromPost,
   entryFromService,
+  hrefFromKnowledge,
+  hrefFromPost,
+  hrefFromService,
   imageFrom,
   itemFromEvent,
   itemFromKnowledge,
@@ -22,21 +25,25 @@ import {
 import type { HelpersFromOpts } from "zod-pocketbase";
 
 // LAYOUT **********************************************************************************************************************************
-export async function getLayout(knowledge: string | undefined, isMain: boolean, opts: HelpersFromOpts) {
+export async function getLayout(knowledge: string, isMain: boolean, opts: HelpersFromOpts) {
   const { config, ...data } = await getLayoutRecords(opts);
   const [organizationPost, ...knowledges] = await Promise.all([
     itemFromPost(data.organizationPost),
     ...data.knowledges.map((knowledge) => itemFromKnowledge(knowledge)),
   ]);
 
-  const theme = knowledge ?? "traditions-ancestrales";
-  const isHome = isMain && theme === "traditions-ancestrales";
-  const currentKnowledge = knowledges.find(({ slug }) => slug === theme);
+  const isHome = isMain && knowledge === "traditions-ancestrales";
+  const currentKnowledge = knowledges.find(({ slug }) => slug === knowledge);
   if (!currentKnowledge) throw new Error("Unknown knowledge");
-  const otherKnowledges = knowledges.filter(({ slug }) => slug !== theme);
+  const otherKnowledges = knowledges.filter(({ slug }) => slug !== knowledge);
   const hero = { image: currentKnowledge.image, subtitle: config.title, title: currentKnowledge.title };
 
-  return { config, hero, isHome, isMain, organizationPost, otherKnowledges, theme };
+  return { config, hero, isHome, isMain, organizationPost, otherKnowledges, theme: knowledge };
+}
+
+export async function getLayoutUrls(opts: HelpersFromOpts) {
+  const [singleUrls, knowledgeUrls] = await Promise.all([getKnowledgeCollectionSlugPageUrls(opts), getKnowledgePageUrls(opts)]);
+  return [...singleUrls, ...knowledgeUrls, "/boutique"];
 }
 
 // KNOWLEDGE PAGE **************************************************************************************************************************
@@ -45,9 +52,14 @@ export async function getKnowledgePageEntries(opts: HelpersFromOpts) {
   return knowledges.map((knowledge) => entryFromKnowledge(knowledge));
 }
 
-export async function getKnowledgePage(knowledge: string | undefined, opts: HelpersFromOpts) {
-  const isHome = knowledge === undefined;
-  const { page, ...data } = await getKnowledgePageRecords(knowledge ?? "traditions-ancestrales", opts);
+export async function getKnowledgePageUrls(opts: HelpersFromOpts) {
+  const { knowledges } = await getKnowledgePageEntriesRecords(opts);
+  return knowledges.map((knowledge) => hrefFromKnowledge(knowledge));
+}
+
+export async function getKnowledgePage(knowledge: string, opts: HelpersFromOpts) {
+  const isHome = knowledge === "traditions-ancestrales";
+  const { page, ...data } = await getKnowledgePageRecords(knowledge, opts);
   const events = await Promise.all(data.events.map((event) => itemFromEvent(event)));
   const post = await (isHome ? { ...itemFromPost(page.post), title: "Bienvenue" } : itemFromPost(page.post));
   const services = await Promise.all((page.services ?? []).map((service) => itemFromService(service)));
@@ -62,6 +74,11 @@ export async function getKnowledgePage(knowledge: string | undefined, opts: Help
 export async function getKnowledgeCollectionSlugPageEntries(opts: HelpersFromOpts) {
   const { posts, services } = await getKnowledgeCollectionSlugPageEntriesRecords(opts);
   return [...posts.map((post) => entryFromPost(post)), ...services.map((service) => entryFromService(service))];
+}
+
+export async function getKnowledgeCollectionSlugPageUrls(opts: HelpersFromOpts) {
+  const { posts, services } = await getKnowledgeCollectionSlugPageEntriesRecords(opts);
+  return [...posts.map((post) => hrefFromPost(post)), ...services.map((service) => hrefFromService(service))];
 }
 
 export async function getKnowledgeCollectionSlugPage(collection: string, slug: string, opts: HelpersFromOpts) {

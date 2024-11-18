@@ -21,16 +21,19 @@
   let justifyCenter = $state(false);
   let target = $derived(externalLink ? "_blank" : "_self");
   let filteredItems = $derived(removeStale ? items.filter(({ stale }) => stale && stale >= new Date().toISOString()) : items);
+  let isSet = $state(false);
 
   // CYCLE *********************************************************************************************************************************
   $effect(() => {
-    justifyCenter = api?.scrollSnapList().length === 1;
-    api?.on("reInit", ({ scrollSnapList }) => (justifyCenter = scrollSnapList().length === 1));
+    if (!api) return;
+    justifyCenter = api.scrollSnapList().length === 1;
+    isSet = true;
+    api.on("reInit", ({ scrollSnapList }) => (justifyCenter = scrollSnapList().length === 1));
   });
 </script>
 
 <Carousel setApi={(emblaApi) => (api = emblaApi)} opts={{ loop: true }} class={className}>
-  <CarouselContent class={cn({ "justify-center": justifyCenter })}>
+  <CarouselContent class={cn("opacity-0 transition-opacity duration-700", { "justify-center": justifyCenter, "opacity-100": isSet })}>
     {#each filteredItems as { features, href, image, slug, text, title } (slug)}
       <CarouselItem class="mb-2 max-w-96">
         <div class="flex h-full w-full flex-col bg-white shadow-md" data-slug={slug}>

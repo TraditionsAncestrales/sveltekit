@@ -9,7 +9,10 @@ import { zContactValues, zNewsletterValues } from "./utils";
 export const load: LayoutServerLoad = async ({ locals: { pocketbase }, params, route }) => {
   const svContact = await superValidate(zod(zContactValues));
   const svNewsletter = await superValidate(zod(zNewsletterValues));
-  const layoutData = await getLayout(params.knowledge, route.id === "/[[knowledge]]", { pocketbase, cache: dev ? "1d" : undefined });
+  const layoutData = await getLayout(params.knowledge ?? "traditions-ancestrales", route.id === "/[[knowledge]]", {
+    pocketbase,
+    cache: dev ? "1d" : undefined,
+  });
 
   const baseSeo = Object.freeze({
     title: "Le site d'Océane",

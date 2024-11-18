@@ -40,7 +40,7 @@ export const imageFrom = allowUndefined(strictImageFrom);
 // KNOWLEDGE *******************************************************************************************************************************
 async function strictItemFromKnowledge(knowledge: KnowledgeForItem) {
   const { image, name: title, slug, text } = knowledge;
-  return { href: hrefFromKnowledge(knowledge).slice(0, -1), image: await imageFrom(image), slug, text, title };
+  return { href: hrefFromKnowledge(knowledge), image: await imageFrom(image), slug, text, title };
 }
 export const itemFromKnowledge = allowUndefined(strictItemFromKnowledge);
 
@@ -49,7 +49,7 @@ export function fragmentFromKnowledge({ slug }: KnowledgeForRoute) {
 }
 
 export function hrefFromKnowledge({ slug }: KnowledgeForRoute) {
-  return "/" + (slug === "traditions-ancestrales" ? "" : `${slug}/`);
+  return "/" + (slug === "traditions-ancestrales" ? "" : `${slug}`);
 }
 
 export function entryFromKnowledge(knowledge: KnowledgeForRoute) {
@@ -75,7 +75,8 @@ async function strictItemFromPost(post: PostForItem) {
 export const itemFromPost = allowUndefined(strictItemFromPost);
 
 export function hrefFromPost(post: PostForRoute) {
-  return `${hrefFromKnowledge(post.knowledge)}articles/${post.slug}`;
+  const knowledgeHref = hrefFromKnowledge(post.knowledge);
+  return `${knowledgeHref === "/" ? knowledgeHref : `${knowledgeHref}/`}articles/${post.slug}`;
 }
 
 export function entryFromPost({ knowledge, slug }: PostForRoute) {
@@ -125,7 +126,8 @@ export function fragmentFromService({ category }: ServiceForFragment) {
 }
 
 export function hrefFromService(service: ServiceForRoute) {
-  return `${hrefFromKnowledge(service.knowledge)}${fragmentFromService(service)}/${service.slug}`;
+  const knowledgeHref = hrefFromKnowledge(service.knowledge);
+  return `${knowledgeHref === "/" ? knowledgeHref : `${knowledgeHref}/`}${fragmentFromService(service)}/${service.slug}`;
 }
 
 export function entryFromService(service: ServiceForRoute) {

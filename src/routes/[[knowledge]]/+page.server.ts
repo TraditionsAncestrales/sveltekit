@@ -1,5 +1,5 @@
 import { dev } from "$app/environment";
-import { MAILCHIMP_API_KEY, MAILCHIMP_LIST_ID, MAILCHIMP_SERVER, RESEND_API_KEY } from "$env/static/private";
+import { MAILCHIMP_API_KEY, MAILCHIMP_LIST_ID, MAILCHIMP_SERVER, RESEND_API_KEY, VERCEL_REVALIDATE_TOKEN } from "$env/static/private";
 import { getKnowledgePage, getKnowledgePageEntries } from "@/lib/api";
 import { getPocketbase } from "@/lib/pocketbase/server";
 import mailchimp from "@mailchimp/mailchimp_marketing";
@@ -10,13 +10,16 @@ import { message, superValidate } from "sveltekit-superforms/server";
 import { zContactValues, zNewsletterValues, type Message } from "../utils";
 import type { Actions, EntryGenerator, PageServerLoad } from "./$types";
 
-// CONST ***********************************************************************************************************************************
-const resend = new Resend(RESEND_API_KEY);
+// CONFIG **********************************************************************************************************************************
+export const config = { isr: { bypassToken: VERCEL_REVALIDATE_TOKEN } };
 
 // ENTRIES *********************************************************************************************************************************
 export const entries: EntryGenerator = async () => {
   return getKnowledgePageEntries({ cache: dev ? "1d" : undefined, pocketbase: getPocketbase() });
 };
+
+// CONST ***********************************************************************************************************************************
+const resend = new Resend(RESEND_API_KEY);
 
 // LOAD ************************************************************************************************************************************
 export const load: PageServerLoad = async ({ locals: { pocketbase }, params: { knowledge } }) => {
