@@ -5,6 +5,9 @@ import Pocketbase from "pocketbase";
 let pocketbase: TypedPocketbase;
 
 export function getPocketbase() {
-  if (!pocketbase) pocketbase = new Pocketbase(ZOD_POCKETBASE_URL);
+  if (!pocketbase) {
+    pocketbase = new Pocketbase(ZOD_POCKETBASE_URL);
+    pocketbase.autoCancellation(false);
+  }
   return pocketbase;
 }
