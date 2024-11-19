@@ -45,7 +45,7 @@
     "calc(100vw - 7rem - 15px)",
   ].join(", ");
 
-  let target = $derived(externalLink ? "_blank" : "_self");
+  let target = $derived(externalLink ? "_blank" : undefined);
 </script>
 
 {#if isSingle && !forceMultiple}

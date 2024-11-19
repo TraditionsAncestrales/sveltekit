@@ -19,7 +19,7 @@
   // VARS **********************************************************************************************************************************
   let api = $state<CarouselAPI>();
   let justifyCenter = $state(false);
-  let target = $derived(externalLink ? "_blank" : "_self");
+  let target = $derived(externalLink ? "_blank" : undefined);
   let filteredItems = $derived(removeStale ? items.filter(({ stale }) => stale && stale >= new Date().toISOString()) : items);
   let isSet = $state(false);
 

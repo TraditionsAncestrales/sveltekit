@@ -54,7 +54,7 @@ export async function getKnowledgePageRecords(knowledge: string, opts: HelpersFr
     service: select(zServicesRecord, ["category", "name", "slug"], { knowledge: zKnowledgeSlug }),
   });
 
-  const eventFilter = `to>"${new Date().toISOString()}"${knowledge === "traditions-ancestrales" ? "" : ` && service.knowledge.slug="${knowledge}"`}`;
+  const eventFilter = knowledge === "traditions-ancestrales" ? "" : `service.knowledge.slug="${knowledge}"`;
 
   const zPage = select(zPagesRecord, [], {
     post: select(zPostsRecord, ["excerpt", "slug", "title"], {
