@@ -60,7 +60,6 @@ export async function getKnowledgePageUrls(opts: HelpersFromOpts) {
 export async function getKnowledgePage(knowledge: string, opts: HelpersFromOpts) {
   const isHome = knowledge === "traditions-ancestrales";
   const { page, ...data } = await getKnowledgePageRecords(knowledge, opts);
-  console.log(itemFromPost(page.post));
   const events = await Promise.all(data.events.map((event) => itemFromEvent(event)));
   const post = { ...(await itemFromPost(page.post)), ...(isHome ? { title: "Bienvenue" } : {}) };
   const services = await Promise.all((page.services ?? []).map((service) => itemFromService(service)));
