@@ -29,7 +29,7 @@
     "@types/md5": "^2.3.5",
     "@types/node": "^22.9.1",
     "autoprefixer": "^10.4.20",
-    "bits-ui": "1.0.0-next.49",
+    "bits-ui": "1.0.0-next.63",
     "embla-carousel-svelte": "^8.5.1",
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
@@ -76,6 +76,7 @@
     "svelte-inview": "^4.0.4",
     "tailwind-merge": "^2.5.4",
     "tailwind-variants": "^0.3.0",
+    "tailwindcss-animate": "^1.0.7",
     "zod-pocketbase": "^0.3.8"
   }
 }

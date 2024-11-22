@@ -1,15 +1,36 @@
 import { Dialog as SheetPrimitive } from "bits-ui";
+import Content from "./sheet-content.svelte";
+import Description from "./sheet-description.svelte";
+import Footer from "./sheet-footer.svelte";
+import Header from "./sheet-header.svelte";
+import Overlay from "./sheet-overlay.svelte";
+import Title from "./sheet-title.svelte";
 
 const Root = SheetPrimitive.Root;
 const Close = SheetPrimitive.Close;
 const Trigger = SheetPrimitive.Trigger;
 const Portal = SheetPrimitive.Portal;
 
-export { Close, Portal, Root, Root as Sheet, Close as SheetClose, Portal as SheetPortal, Trigger as SheetTrigger, Trigger };
-
-export { default as Content, default as SheetContent } from "./sheet-content.svelte";
-export { default as Description, default as SheetDescription } from "./sheet-description.svelte";
-export { default as Footer, default as SheetFooter } from "./sheet-footer.svelte";
-export { default as Header, default as SheetHeader } from "./sheet-header.svelte";
-export { default as Overlay, default as SheetOverlay } from "./sheet-overlay.svelte";
-export { default as SheetTitle, default as Title } from "./sheet-title.svelte";
+export {
+  Close,
+  Content,
+  Description,
+  Footer,
+  Header,
+  Overlay,
+  Portal,
+  Root,
+  //
+  Root as Sheet,
+  Close as SheetClose,
+  Content as SheetContent,
+  Description as SheetDescription,
+  Footer as SheetFooter,
+  Header as SheetHeader,
+  Overlay as SheetOverlay,
+  Portal as SheetPortal,
+  Title as SheetTitle,
+  Trigger as SheetTrigger,
+  Title,
+  Trigger,
+};

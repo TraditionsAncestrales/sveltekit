@@ -22,6 +22,7 @@
 </script>
 
 <script lang="ts">
+  import { onNavigate } from "$app/navigation";
   import { page } from "$app/stores";
   import * as Sheet from "@/components/ui/sheet";
   import { Store } from "runed";
@@ -34,6 +35,8 @@
 
   // VARS **********************************************************************************************************************************
   const pageStore = new Store(page);
+  let isNavBurgerOpen = $state(false);
+
   let pathname = $derived(pageStore.current.url.pathname);
 
   let menu = $derived({
@@ -52,6 +55,11 @@
   let navs = $derived(menu.items);
   let leftNavs = $derived(navs.slice(0, Math.ceil(0.5 * navs.length)));
   let rightNavs = $derived(navs.slice(Math.ceil(0.5 * navs.length)));
+
+  // EVENTS ********************************************************************************************************************************
+  onNavigate(() => {
+    isNavBurgerOpen = false;
+  });
 </script>
 
 <div class="bg-white p-2 group-data-scrolled:bg-white group-data-scrolled:shadow-lg sm:bg-transparent {className}">
@@ -76,7 +84,7 @@
 <!-- NAV BURGER -->
 {#snippet NavBurger(className: string)}
   {@const { LINK, ROOT } = NAV_BURGER()}
-  <Sheet.Root>
+  <Sheet.Root bind:open={isNavBurgerOpen}>
     <Sheet.Trigger class={ROOT({ className })}><ListIcon /></Sheet.Trigger>
     <Sheet.Content>
       {#each menu.items as { href, isActive, label }}

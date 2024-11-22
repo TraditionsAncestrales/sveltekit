@@ -11,7 +11,7 @@
   let { data }: ShopPageProps = $props();
 </script>
 
-<RecordsItems title="Boutique" items={data.products} border="all" intent="light">
+<RecordsItems title="Produit" items={data.products} border="all" intent="light">
   {#snippet None()}
     <p>Il n'y a actuellement aucun produit dans la boutique.</p>
   {/snippet}
