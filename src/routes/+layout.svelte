@@ -48,11 +48,15 @@
       });
     });
   });
+
+  $effect(() => {
+    document.body.dataset.theme = theme;
+  });
 </script>
 
 <svelte:window bind:scrollY />
 <MetaTags {...seo} />
-<div class="group" data-scrolled={isScrolled} data-theme={theme}>
+<div class="group" data-scrolled={isScrolled}>
   <TheProgress class="fixed inset-x-0 top-0 z-50" />
   <TheHeader class="fixed left-0 top-0 z-30 w-full" />
   {@render TheHero(isMain ? "h-screen" : "h-[50vh]")}

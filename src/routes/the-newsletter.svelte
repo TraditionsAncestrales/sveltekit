@@ -25,7 +25,8 @@
   import { superForm, type SuperValidated } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
   import { tv } from "tailwind-variants";
-  import { default as SubmitIcon, default as SubmittingIcon } from "~icons/bi/envelope-plus";
+  import SubmitIcon from "~icons/bi/envelope-plus";
+  import SubmittingIcon from "~icons/svg-spinners/ring-resize";
   import { zNewsletterValues, type Message, type NewsletterValues } from "./utils";
 
   // PROPS ***********************************************************************************************************************************
@@ -38,6 +39,7 @@
       toast.error(i18n());
     },
     onUpdated: ({ form: { message, valid } }) => {
+      console.log(message, valid);
       if (message) valid ? toast.success(i18n(message)) : toast.error(i18n(message));
     },
   });
@@ -50,7 +52,7 @@
     <p class="text-justify lg:max-w-sm xl:max-w-lg">
       Pour recevoir chaque semaine mon bulletin, c'est simple, vous avez juste à saisir votre courriel :
     </p>
-    <form method="POST" action="/?/subscribeToNewsletter" use:enhance novalidate class={FORM({ className: "flex-1" })}>
+    <form method="POST" action="/?/subscribeToNewsletter" use:enhance class={FORM({ className: "flex-1" })}>
       <Form.Field form={sf} name="email" class="w-full sm:max-w-xs xl:max-w-sm">
         <Form.Control>
           {#snippet children({ props })}
@@ -59,7 +61,7 @@
         </Form.Control>
         <Form.FieldErrors class="absolute text-destructive-400" />
       </Form.Field>
-      <Form.Button disabled={$submitting} intent="secondary" class="mt-4 w-full justify-center sm:mt-0 sm:w-auto">
+      <Form.Button disabled={$submitting} intent="secondary" class="mt-4 w-full justify-center gap-2 sm:mt-0 sm:w-auto">
         {#if $delayed}<SubmittingIcon class="h-4 w-4" />{:else}<SubmitIcon class="h-4 w-4" />{/if}
         Je m'inscris
       </Form.Button>

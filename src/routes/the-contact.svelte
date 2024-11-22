@@ -22,7 +22,8 @@
   import { toast } from "svelte-sonner";
   import { superForm, type SuperValidated } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
-  import { default as SubmitIcon, default as SubmittingIcon } from "~icons/bi/envelope-plus";
+  import SubmitIcon from "~icons/bi/send";
+  import SubmittingIcon from "~icons/svg-spinners/ring-resize";
   import Map from "./the-contact.map.svelte";
   import { zContactValues, type ContactValues, type Message } from "./utils";
 
@@ -83,7 +84,7 @@
       </Form.Control>
       <Form.FieldErrors />
     </Form.Field>
-    <Form.Button disabled={$submitting} class="flex gap-2 self-end">
+    <Form.Button disabled={$submitting} class="gap-2 self-end">
       {#if $delayed}<SubmittingIcon class="h-4 w-4" />{:else}<SubmitIcon class="h-4 w-4" />{/if}
       Envoyer
     </Form.Button>

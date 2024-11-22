@@ -20,9 +20,11 @@
   // VARS **********************************************************************************************************************************
   let selected = $state(0);
   let item = $derived(items[selected]);
+  let interval = $state<NodeJS.Timeout>();
 
   $effect(() => {
-    const interval = setInterval(() => (selected = (selected + 1) % items.length), 6000);
+    if (items.length === 0) clearInterval(interval);
+    else interval = setInterval(() => (selected = (selected + 1) % items.length), 6000);
     return () => clearInterval(interval);
   });
 </script>
