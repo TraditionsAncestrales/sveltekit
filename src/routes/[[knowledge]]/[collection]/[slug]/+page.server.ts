@@ -13,7 +13,7 @@ export const config = { isr: { bypassToken: VERCEL_REVALIDATE_TOKEN } };
 export const entries: EntryGenerator = async () => {
   const helpers = helpersFrom({ cache: dev ? "1d" : undefined, pocketbase: getPocketbase() });
   const [posts, services] = await Promise.all([getPostEntries(helpers), getServiceEntries(helpers)]);
-  return { ...posts, ...services };
+  return [...posts, ...services];
 };
 
 // LOAD ************************************************************************************************************************************
