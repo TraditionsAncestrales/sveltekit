@@ -1,12 +1,13 @@
 import { dev } from "$app/environment";
 import { MAILCHIMP_API_KEY, MAILCHIMP_LIST_ID, MAILCHIMP_SERVER, RESEND_API_KEY, VERCEL_REVALIDATE_TOKEN } from "$env/static/private";
-import { getKnowledgePage, getKnowledgePageEntries } from "@/lib/api";
+import { getEvents, getKnowledgeEntries, getPage, getTestimonies } from "@/lib/pocketbase";
 import { getPocketbase } from "@/lib/pocketbase/server";
 import mailchimp from "@mailchimp/mailchimp_marketing";
 import md5 from "md5";
 import { Resend } from "resend";
 import { zod } from "sveltekit-superforms/adapters";
 import { message, superValidate } from "sveltekit-superforms/server";
+import { helpersFrom } from "zod-pocketbase";
 import { zContactValues, zNewsletterValues, type Message } from "../utils";
 import type { Actions, EntryGenerator, PageServerLoad } from "./$types";
 
@@ -14,22 +15,27 @@ import type { Actions, EntryGenerator, PageServerLoad } from "./$types";
 export const config = { isr: { bypassToken: VERCEL_REVALIDATE_TOKEN } };
 
 // ENTRIES *********************************************************************************************************************************
-export const entries: EntryGenerator = async () => {
-  return getKnowledgePageEntries({ cache: dev ? "1d" : undefined, pocketbase: getPocketbase() });
-};
+export const entries: EntryGenerator = async () =>
+  getKnowledgeEntries(helpersFrom({ cache: dev ? "1d" : undefined, pocketbase: getPocketbase() }));
 
 // CONST ***********************************************************************************************************************************
 const resend = new Resend(RESEND_API_KEY);
 
 // LOAD ************************************************************************************************************************************
-export const load: PageServerLoad = async ({ locals: { pocketbase }, params: { knowledge } }) => {
-  const data = await getKnowledgePage(knowledge ?? "traditions-ancestrales", { cache: dev ? "1d" : undefined, pocketbase });
+export const load: PageServerLoad = async ({ locals, params: { knowledge = "traditions-ancestrales" } }) => {
+  const [{ consultations, post, testimoniesImage, trainings, workshops }, allEvents, testimonies] = await Promise.all([
+    getPage(knowledge, locals),
+    getEvents(locals),
+    getTestimonies(locals),
+  ]);
+  const isHome = knowledge === "traditions-ancestrales";
+  const events = isHome ? allEvents : allEvents.filter(({ slug }) => slug === knowledge);
 
   const seo = Object.freeze({
-    title: knowledge ? data.post.title : undefined,
+    title: knowledge ? post.title : undefined,
   });
 
-  return { ...data, seo };
+  return { consultations, events, post, seo, testimonies, testimoniesImage, trainings, workshops };
 };
 
 // ACTIONS *********************************************************************************************************************************

@@ -1,12 +1,13 @@
-import { getLayoutUrls } from "@/lib/api";
+import { getAllUrls } from "@/lib/pocketbase";
 import type { RequestHandler } from "@sveltejs/kit";
 import { z } from "zod";
+import { helpersFrom } from "zod-pocketbase";
 
 export const POST: RequestHandler = async ({ locals: { pocketbase }, request }) => {
   try {
     const payload = await request.json();
     const { tags, token } = z.object({ tags: z.string().array(), token: z.string() }).parse(payload);
-    const paths = tags.length === 1 && tags[0] === "all" ? await getLayoutUrls({ pocketbase }) : tags;
+    const paths = tags.length === 1 && tags[0] === "all" ? await getAllUrls(helpersFrom({ pocketbase })) : tags;
     console.log("purging", paths);
     const urls = paths.map((path) => new URL(path, new URL(request.url).origin));
     await Promise.all(urls.map(async (url) => fetch(url, { headers: { "x-prerender-revalidate": token } })));

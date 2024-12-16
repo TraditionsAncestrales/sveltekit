@@ -14,7 +14,7 @@
   let { data }: KnowledgePageProps = $props();
 
   // VARS **********************************************************************************************************************************
-  let { consultations, events, post, testimonies, trainings, workshops } = $derived(data);
+  let { consultations, events, post, testimonies, testimoniesImage, trainings, workshops } = $derived(data);
   let count = $derived(+(consultations.length > 0) + +(workshops.length > 0) + +(trainings.length > 0));
   let eventIntent: Intent = $derived(count > 0 ? "primary" : "light");
 </script>
@@ -29,4 +29,4 @@
       <strong>Vous pouvez déjà en obtenir le programme en me faisant une demande via le formulaire de contact.</strong>
     </div>{/snippet}
 </RecordsItems>
-<TheTestimonies {...testimonies} />
+<TheTestimonies items={testimonies} image={testimoniesImage} />
