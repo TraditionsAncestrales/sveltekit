@@ -17,7 +17,6 @@
   let { class: className, externalLink = false, items, removeStale = false }: CarouselProps = $props();
 
   // VARS **********************************************************************************************************************************
-  let api = $state<CarouselAPI>();
   let justifyCenter = $state(false);
   let target = $derived(externalLink ? "_blank" : undefined);
   let filteredItems = $derived(removeStale ? items.filter(({ stale }) => stale && stale >= new Date().toISOString()) : items);
@@ -25,14 +24,19 @@
 
   // CYCLE *********************************************************************************************************************************
   $effect(() => {
+    if (items) justifyCenter = false;
+  });
+
+  // EVENTS ********************************************************************************************************************************
+  function handleSetApi(api?: CarouselAPI) {
     if (!api) return;
+    api.on("reInit", ({ scrollSnapList }) => (justifyCenter = scrollSnapList().length === 1));
     justifyCenter = api.scrollSnapList().length === 1;
     isSet = true;
-    api.on("reInit", ({ scrollSnapList }) => (justifyCenter = scrollSnapList().length === 1));
-  });
+  }
 </script>
 
-<Carousel setApi={(emblaApi) => (api = emblaApi)} opts={{ loop: true }} class={className}>
+<Carousel setApi={handleSetApi} opts={{ loop: true }} class={className}>
   <CarouselContent class={cn("opacity-0 transition-opacity duration-700", { "justify-center": justifyCenter, "opacity-100": isSet })}>
     {#each filteredItems as { features, href, image, slug, text, title } (slug)}
       <CarouselItem class="mb-2 max-w-96">

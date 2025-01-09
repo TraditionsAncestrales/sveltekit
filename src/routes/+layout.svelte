@@ -1,22 +1,16 @@
 <script lang="ts" module>
-  // TYPES *********************************************************************************************************************************
-  export type LayoutProps = { children: Snippet; data: LayoutServerData };
-</script>
-
-<script lang="ts">
   import { onNavigate } from "$app/navigation";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import PostsItem from "@/components/posts-item.svelte";
   import { BUTTON } from "@/components/ui/button";
   import { Section } from "@/components/ui/section";
   import { Toaster } from "@/components/ui/sonner";
   import { Title } from "@/components/ui/title";
   import { cn } from "@/lib/utils";
-  import "@/styles/globals.css";
-  import "@/styles/theme.css";
   import { Image } from "@unpic/svelte";
   import type { Snippet } from "svelte";
   import { MetaTags, deepMerge } from "svelte-meta-tags";
+  import { scrollY } from "svelte/reactivity/window";
   import PhoneIcon from "~icons/bi/phone";
   import AdressIcon from "~icons/bi/pin-map";
   import EmailIcon from "~icons/ph/at";
@@ -29,14 +23,21 @@
   import TheNewsletter from "./the-newsletter.svelte";
   import TheProgress from "./the-progress.svelte";
 
+  import "@/styles/globals.css";
+  import "@/styles/theme.css";
+
+  // TYPES *********************************************************************************************************************************
+  export type LayoutProps = { children: Snippet; data: LayoutServerData };
+</script>
+
+<script lang="ts">
   // PROPS *********************************************************************************************************************************
   let { children, data }: LayoutProps = $props();
   let { baseSeo, config, hero, isHome, isMain, organizationPost, otherKnowledges, svContact, svNewsletter, theme } = $derived(data);
 
   // VARS **********************************************************************************************************************************
-  let scrollY = $state(0);
-  let isScrolled = $derived(scrollY > 0);
-  let seo = $derived(deepMerge(baseSeo, $page.data.seo));
+  let isScrolled = $derived((scrollY.current ?? 0) > 0);
+  let seo = $derived(deepMerge(baseSeo, page.data.seo));
 
   // LIFECYCLE *****************************************************************************************************************************
   onNavigate((navigation) => {
@@ -54,7 +55,6 @@
   });
 </script>
 
-<svelte:window bind:scrollY />
 <MetaTags {...seo} />
 <div class="group" data-scrolled={isScrolled}>
   <TheProgress class="fixed inset-x-0 top-0 z-50" />

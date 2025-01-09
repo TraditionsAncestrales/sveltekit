@@ -1,4 +1,11 @@
 <script lang="ts" module>
+  import { onNavigate } from "$app/navigation";
+  import { page } from "$app/state";
+  import * as Sheet from "@/components/ui/sheet";
+  import { tv } from "tailwind-variants";
+  import ListIcon from "~icons/ph/list";
+  import LogoIcon from "~icons/ta/logo";
+
   // STYLES ********************************************************************************************************************************
   const NAV_BURGER = tv({
     slots: {
@@ -22,22 +29,11 @@
 </script>
 
 <script lang="ts">
-  import { onNavigate } from "$app/navigation";
-  import { page } from "$app/stores";
-  import * as Sheet from "@/components/ui/sheet";
-  import { Store } from "runed";
-  import { tv } from "tailwind-variants";
-  import ListIcon from "~icons/ph/list";
-  import LogoIcon from "~icons/ta/logo";
-
   // PROPS *********************************************************************************************************************************
   let { class: className } = $props();
 
   // VARS **********************************************************************************************************************************
-  const pageStore = new Store(page);
   let isNavBurgerOpen = $state(false);
-
-  let pathname = $derived(pageStore.current.url.pathname);
 
   let menu = $derived({
     label: "Menu Principal",
@@ -49,7 +45,7 @@
       { label: "Reiki", href: "/reiki" },
       { label: "Tarot", href: "/tarot" },
       { label: "Boutique", href: "/boutique" },
-    ].map((item) => ({ ...item, isActive: pathname.startsWith(item.href) })),
+    ].map((item) => ({ ...item, isActive: page.url.pathname.startsWith(item.href) })),
   });
 
   let navs = $derived(menu.items);
